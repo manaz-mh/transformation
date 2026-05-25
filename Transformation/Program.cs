@@ -5,7 +5,7 @@ class Program
     static void Main(string[] args)
     {   //Day 1 - Set ups
 
-        Console.WriteLine("Previous Monthly Salary : ");
+        Console.WriteLine("Manaz");
 
         // Day 2 - Variables and Methods
         Task1();
