@@ -4,8 +4,8 @@ using System.Transactions;
 class Program
 {
     static void Main(string[] args)
-    {   // Day 1 - Set ups
-
+    {   
+        // Day 1 - Set ups
         //Console.WriteLine("Manaz");
 
         // Day 2 - Variables and Methods
@@ -16,7 +16,7 @@ class Program
         //yearlySalary();
         //SalaryCalculator();
 
-        //Day 3 - Loops and Conditions
+        //Day 3 - Loops, Conditions and Validations
         CheckEvenOrOdd();
         VotingEligiblity();
         Multiplication();
