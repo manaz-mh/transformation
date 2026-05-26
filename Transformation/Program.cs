@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Transactions;
 
 class Program
 {
     static void Main(string[] args)
-    {   
+    {
         // Day 1 - Set ups
         //Console.WriteLine("Manaz");
 
@@ -17,14 +18,170 @@ class Program
         //SalaryCalculator();
 
         //Day 3 - Loops, Conditions and Validations
-        CheckEvenOrOdd();
-        VotingEligiblity();
-        Multiplication();
-        NumberSum();
-        ATMMenu();
-        Marks();
+        //CheckEvenOrOdd();
+        //VotingEligiblity();
+        //Multiplication();
+        //NumberSum();
+        //ATMMenu();
+        //Marks();
+
+        //Day 4 - Arrays and List
+        //StudentNames();
+        //SumOfArray();
+        //LargestNumber();
+        //EvenNumbers();
+        //DynmicStudentLists();
+        //HighestLowestAverage();
     }
 
+    //Day 4 - Arrays and List
+    static void HighestLowestAverage()
+    {
+        int[] array = new int[5];
+        Console.WriteLine("Enter 5 numbers");
+
+        for(int i = 0; i < array.Length; i++)
+        {
+            array[i] = Convert.ToInt32(Console.ReadLine());
+        }
+
+        int sum = 0, avg = 0,highestNumber = array[0], lowestNumber = array[0];
+
+        foreach(int i in array){
+            sum = sum + i;
+
+            if (highestNumber < i)
+                highestNumber = i;
+
+            if (lowestNumber > i)
+                lowestNumber = i;
+
+        }
+
+        avg = sum / array.Length;
+
+        Console.WriteLine($"Highest : {highestNumber} \nLowest : {lowestNumber} \nAverage : {avg}");
+    }
+
+
+    static void DynmicStudentLists()
+    {
+        List<string> studentList = new List<string>();
+        bool isRunning = true;
+        int menu = 0;
+        while (isRunning)
+        {
+            Console.WriteLine("1.Add Student \n2.View Students\n3.Search Students\n4.Remove Student \n5.Exit");
+            menu = Convert.ToInt32(Console.ReadLine());
+
+            switch (menu)
+            {
+                case 1:
+                    Console.WriteLine("Enter student name");
+                    studentList.Add(Console.ReadLine());
+                    break;
+                case 2:
+                    Console.WriteLine("Student Names:");
+                    foreach (var item in studentList)
+                        Console.WriteLine(item);
+                    break;
+                case 3:
+                    Console.WriteLine("Enter the name to find the student :");
+                    string name = Console.ReadLine();
+                    bool isfound = false;
+
+                    foreach(string item in studentList)
+                        if(item == name)
+                        {
+                            Console.WriteLine("Student found");
+                            isfound = true;
+                            break;
+                        }
+                    if (!isfound)
+                        Console.WriteLine("Student not found");
+                    break;
+                
+
+                case 4:
+                    Console.WriteLine("Enter Student Name to remove :");
+                    string studentname = Console.ReadLine();
+
+                    bool status = studentList.Remove(studentname);
+
+                    if (status)
+                    {
+                        Console.WriteLine($"{studentname} is removed successfully. \nStudent List:");
+                        foreach (var item in studentList)
+                            Console.WriteLine($"{item}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{studentname} is not found");
+                    }
+                    break;
+                case 5:
+                    isRunning = false;
+                    break;
+                default:
+                    Console.WriteLine("invalid Entry");
+                    break;
+
+            }
+                   
+        }
+    }
+
+    static void EvenNumbers() {
+        int[] array = { 1, 2, 3, 6, 5, 11, 24, 38, 77 };
+        
+        foreach (int i in array)
+            if(i%2 == 0){
+                Console.Write($"{i} ");
+            }
+    
+
+    }
+
+    static void LargestNumber()
+    {
+        int[] array = { 10, 50, 20, 90, 40 };
+
+        int largest = array[0];
+
+        foreach (int i in array)
+            if (largest < i)
+                largest = i;
+
+        Console.WriteLine($"Largest Number : {largest}");
+    }
+
+    static void SumOfArray()
+    {
+        int[] array = { 10, 20, 30, 40, 50 };
+        int sum = 0;
+
+            foreach (int i in array)
+            sum = sum + i;
+
+        Console.WriteLine($"Sum : {sum}");
+    }
+
+    static void StudentNames()
+    {
+        string[] students = { "John", "Wick", "Tony", "Stark", "Bruce" };
+
+        Console.WriteLine("Using FOR Loop :");
+        for(int i = 0; i <= students.Length - 1; i++)
+        {
+            Console.WriteLine(students[i]);
+        }
+
+        Console.WriteLine("Using FOREACH Loop :");
+        foreach (var item in students)
+            Console.WriteLine(item);
+    }
+
+    // Day 3 - Loops, Conditions and Validations
     static void Marks()
     {
         Console.WriteLine("Enter your Mark:");
@@ -138,6 +295,7 @@ class Program
             Console.WriteLine($"{num} is Odd number");
     }
 
+    // Day 2 - Variables and Methods
     static void SalaryCalculator()
     {
         Console.WriteLine("Previous Monthly Salary : ");
