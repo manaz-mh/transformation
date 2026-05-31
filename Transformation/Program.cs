@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Transactions;
+using Transformation;
 
 class Program
 {
@@ -32,6 +34,194 @@ class Program
         //EvenNumbers();
         //DynmicStudentLists();
         //HighestLowestAverage();
+
+        //Day 5 - OOPs Concepts
+        //EmployeeDetails();
+        //StudentDetails();
+        //BankOperations();
+        //CarDetails();
+        //Calculations();
+        ShoppingCart();
+    }
+
+    //Day 5 - OOPs Concepts
+
+    static void ShoppingCart()
+    {
+        List<ShoppingCartProduct> objList = new List<ShoppingCartProduct>();
+        bool isRunning = true;
+
+        while (isRunning) { 
+        Console.WriteLine("Please Enter the Request:\n1.Add Product\n2.TotalPrice\n3.Exit");
+        int number = Convert.ToInt32(Console.ReadLine());
+
+        switch (number)
+        {
+            case 1:
+                ShoppingCartProduct obj = new ShoppingCartProduct();
+                Console.WriteLine("Enter the Product Name:");
+                obj.Name = Console.ReadLine();
+
+                Console.WriteLine("Enter Product Price:");
+                obj.Price = Convert.ToDouble(Console.ReadLine());
+
+                Console.WriteLine("Enter number of Quantity:");
+                obj.Quantity = Convert.ToInt32(Console.ReadLine());
+
+                objList.Add(obj);
+                Console.WriteLine("Item added successfully");
+                break;
+
+            case 2:
+                    ShoppingCartProduct.TotalPrice(objList);
+                break;
+
+            case 3:
+                isRunning = false;
+                break;
+            default:
+                Console.WriteLine("Invalid Entry");
+                break;
+        }
+        }
+    }
+    static void Calculations() {
+        Calculator objCalc = new Calculator();
+        bool isRunning = true;
+
+        while (isRunning)
+        {
+            Console.WriteLine("Please Enter the operation: \n1.Addition\n2.Subtraction\n3.Multiplication\n4.Division\n5.Exit");
+            int number = Convert.ToInt32(Console.ReadLine());
+
+
+            switch (number) {
+                case 1:
+                    Console.WriteLine("Enter Number 1:");
+                    objCalc.Number1 = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Enter Number 2");
+                    objCalc.Number2 = Convert.ToInt32(Console.ReadLine());
+                    objCalc.Add();
+                    break;
+
+                case 2:
+
+                    Console.WriteLine("Enter Number 1:");
+                    objCalc.Number1 = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Enter Number 2");
+                    objCalc.Number2 = Convert.ToInt32(Console.ReadLine());
+                    objCalc.Subtract();
+                    break;
+                case 3:
+
+                    Console.WriteLine("Enter Number 1:");
+                    objCalc.Number1 = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Enter Number 2");
+                    objCalc.Number2 = Convert.ToInt32(Console.ReadLine());
+                    objCalc.Multiply();
+                    break;
+                case 4:
+
+                    Console.WriteLine("Enter Number 1:");
+                    objCalc.Number1 = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Enter Number 2");
+                    objCalc.Number2 = Convert.ToInt32(Console.ReadLine());
+                    objCalc.Divide();
+                    break;
+                case 5:
+                    isRunning = false;
+                    break;
+                default:
+                    Console.WriteLine("Invalid Entry");
+                    break;
+
+            }
+        }
+
+
+    }
+    static void CarDetails()
+    {
+        List<Car> carList = new List<Car>
+        {
+            new Car{CarName="BMW",Model="M4",Speed="400"},
+            new Car{CarName="Audi",Model="RS5",Speed="350"},
+            new Car{CarName="Mercedes",Model="AMG GT",Speed="380"}
+        };
+
+        foreach (Car car in carList)
+            car.DisplayCarInfo();
+    }
+
+    static void BankOperations() {
+
+        bool isRunning = true;
+
+        BankAccount obj = new BankAccount();
+
+        obj.AccountHolder = "Steve";
+        obj.Balance = 1000000;
+
+        while (isRunning)
+        {
+            Console.WriteLine("Please Enter The Option: \n1.Deposite\n2.Withdraw\n3.Transfer\n4.Exit");
+
+            int number = Convert.ToInt32(Console.ReadLine());
+
+            switch (number)
+            {
+                case 1:
+                    Console.WriteLine("Please Enter the Deposit Amount:");
+                    double depositAmount = Convert.ToDouble(Console.ReadLine());
+                    obj.Deposit(depositAmount);
+                    break;
+                case 2:
+                    Console.WriteLine("Please Enter the Withdraw Amount:");
+                    double withdrawAmount = Convert.ToDouble(Console.ReadLine());
+                    obj.Withdraw(withdrawAmount);
+                    break;
+                case 3:
+                    BankAccount recipient = new BankAccount();
+                    Console.WriteLine("Please Enter Recipient Name:");
+                    recipient.AccountHolder = Console.ReadLine();
+
+                    Console.WriteLine("Please Enter Recipient Account Number:");
+                    recipient.AccountNumber = Convert.ToInt32(Console.ReadLine());
+
+                    Console.WriteLine("Please Enter the Amount to transfer:");
+                    double Amount = Convert.ToDouble(Console.ReadLine());
+                    recipient.Balance = 100;
+
+                    obj.Transfer(recipient, Amount);
+                    break;
+                case 4:
+                    isRunning = false;
+                    break;
+                default:
+                    Console.WriteLine("Invalid Option");
+                    break;
+            }
+            
+
+        }
+    }
+
+
+    static void StudentDetails()
+    {
+        Student obj = new Student("Ronaldo",7);
+
+        Console.WriteLine($"Student Name :{obj.Name}\nStudent Age:{obj.Age}");
+    }
+
+    static void EmployeeDetails()
+    {
+        Employee obj = new Employee();
+
+        obj.Id = 1507;
+        obj.Name = "Stark";
+        obj.Salary = 2000000;
+        Console.WriteLine($"Employee ID :{obj.Id}\nEmployee Name:{obj.Name}\nEmployee Salary :{obj.Salary}");
     }
 
     //Day 4 - Arrays and List
