@@ -48,8 +48,74 @@ class Program
         //Banking();
         //SquareDemo();
         //CounterDemo();
-        EmployeeSalaryDetails();
+        //EmployeeSalaryDetails();
+
+        //Day 7 – Inheritance & Polymorphism
+        //AnimalDemo();
+        //EmployeeDemo();
+        //ShapeDemo();
+        //CalculatorDemo();
+        VehicleDemo();
     }
+
+    //Day 7 – Inheritance & Polymorphism
+
+    static void VehicleDemo()
+    {
+        CarV2 vehicle1 = new CarV2();
+        Bike vehicle2 = new Bike();
+
+        vehicle1.Brand = "BMW";
+        vehicle2.Brand = "Yamaha";
+
+        vehicle1.Start();
+        vehicle1.Drive();
+
+        vehicle2.Start();
+        vehicle2.Ride();
+    }
+    static void CalculatorDemo()
+    {
+        CalculatorV2 cal = new CalculatorV2();
+
+        int sum1 = cal.Sum(10, 20);
+        int sum2 = cal.Sum(10,20,30);
+        Console.WriteLine($"Sum1 : {sum1}\nSum2 : {sum2}");
+    }
+
+    static void ShapeDemo()
+    {
+        Shape shape1 = new Circle();
+        Shape shape2 = new Rectangle();
+
+        shape1.Draw();
+        shape2.Draw();
+    }
+
+    static void EmployeeDemo()
+    {
+        Developer developer = new Developer();
+
+        developer.Name = "Steve";
+        developer.Work();
+        developer.Code();
+
+        Manager manager = new Manager();
+
+        manager.Name = "Tim";
+        manager.Work();
+        manager.Manage();
+    }
+
+    static void AnimalDemo()
+    {
+        Dog dog = new Dog();
+
+        dog.Name = "Coco";
+        dog.Eat();
+        dog.Bark();
+    }
+
 
     //Day 6 – Encapsulation, Access Modifiers & Static
 
