@@ -41,7 +41,63 @@ class Program
         //BankOperations();
         //CarDetails();
         //Calculations();
-        ShoppingCart();
+        //ShoppingCart();
+
+        //Day 6 – Encapsulation, Access Modifiers & Static
+        //PersonDetails();
+        //Banking();
+        //SquareDemo();
+        //CounterDemo();
+        EmployeeSalaryDetails();
+    }
+
+    //Day 6 – Encapsulation, Access Modifiers & Static
+
+    static void EmployeeSalaryDetails()
+    {
+        EmployeeSalary salary = new EmployeeSalary();
+
+        salary.SetSalary(50000);
+        salary.ApplyHike(10);
+        salary.GetSalary();
+    }
+    static void CounterDemo()
+    {
+        VisitorCounter v1 = new VisitorCounter();
+        VisitorCounter v2 = new VisitorCounter();
+        VisitorCounter v3 = new VisitorCounter();
+
+        Console.WriteLine($"Count : {VisitorCounter.Count}");
+    }
+
+    static void SquareDemo()
+    {
+       int result = MathHelper.Square(5);
+        Console.WriteLine($"Result : {result}");
+    }
+
+    static void Banking()
+    {
+        BankAccountV2 banking = new BankAccountV2();
+
+        banking.SetBalance(100000);
+
+        banking.Deposit(5000);
+        banking.ShowBalance();
+        banking.Withdraw(999);
+        banking.ShowBalance();
+    }
+
+    static void PersonDetails()
+    {
+        Person person = new Person();
+
+        person.Name = "Stark";
+        //person.Age = 30;
+
+        person.SetAge(30);
+
+        person.DisplayPerson();
     }
 
     //Day 5 - OOPs Concepts
