@@ -55,7 +55,58 @@ class Program
         //EmployeeDemo();
         //ShapeDemo();
         //CalculatorDemo();
-        VehicleDemo();
+        //VehicleDemo();
+
+        //Day 8 - Abstract Class & Interfaces
+        //ShapeAreaDemo();
+        //EmployeeWorkDemo();
+        //PrinterDemo();
+        //MultiFunctionDemo();
+        Payment();
+    }
+
+    //Day 8 - Abstract Class & Interfaces
+    static void Payment()
+    {
+        IPayment payment1 = new CreditCardPayment();
+        IPayment payment2 = new UPIPayment();
+
+        payment1.Pay(500);
+        payment2.Pay(500);
+    }
+
+    static void MultiFunctionDemo()
+    {
+        MultiFunctionPrinter device = new MultiFunctionPrinter();
+
+        device.Scan();
+        device.Print();
+    }
+
+    static void PrinterDemo()
+    {
+        Printer printer = new Printer();
+
+        printer.Print();
+    }
+
+    static void EmployeeWorkDemo()
+    {
+        DeveloperV2 developer = new DeveloperV2();
+
+        developer.Name = "Ted";
+
+        developer.Work();
+    }
+
+    static void ShapeAreaDemo()
+    {
+        CircleV2 circle = new CircleV2();
+
+        circle.Radius = 5;
+        double area = circle.CalculateArea();
+
+        Console.WriteLine($"Area : {area}");
     }
 
     //Day 7 – Inheritance & Polymorphism
