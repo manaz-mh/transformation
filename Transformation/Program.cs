@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Transactions;
 using Transformation;
@@ -62,7 +63,145 @@ class Program
         //EmployeeWorkDemo();
         //PrinterDemo();
         //MultiFunctionDemo();
-        Payment();
+        //Payment();
+
+        //Day 9 - Exception Handling & File Operations
+        //DivideNumbers();
+        //DivideNumbersV2();
+        //FinallyDemo();
+        //WriteFile();
+        //ReadFile();
+        StudentFileManager();
+    }
+
+    //Day 9 - Exception Handling & File Operations
+
+    static void StudentFileManager()
+    {
+        try
+        {
+            bool isRunning = true;
+            string filePath = "StudentFileManager.txt"; 
+            while (isRunning)
+            {
+                Console.WriteLine("Student File Manager\n1.Add Student\n2.View Student\n3.Exit\nPlease Enter the option number");
+                int option = Convert.ToInt32(Console.ReadLine());
+
+                switch (option)
+                {
+                    case 1:
+                        Console.WriteLine("Please Enter Student Name:");
+                        string studentName = Console.ReadLine();
+                        if (!string.IsNullOrWhiteSpace(studentName))
+                        {
+                            if (!File.Exists(filePath))
+                                File.WriteAllText(filePath, studentName);
+                            else
+                                File.AppendAllText(filePath, "\n"+studentName);
+
+                            Console.WriteLine($"{studentName} added successfully");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Please enter valid name");
+                        }
+                        break;
+                    case 2:
+                        
+                        if (File.Exists(filePath)) 
+                        {
+                            Console.WriteLine("Name of Students:");
+                            string content = File.ReadAllText(filePath); 
+                            Console.WriteLine(content);
+                        }                           
+                        else
+                            Console.WriteLine("No student records found.");
+                        break;
+                    case 3:
+                        isRunning = false;
+                        break;
+                    default:
+                        Console.WriteLine("Please Enter valid option.");
+                        break;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+    static void ReadFile()
+    {
+        string path = "salary.txt";
+        string content = File.ReadAllText(path);
+
+        Console.WriteLine($"{content}");
+
+    }
+
+    static void WriteFile()
+    {
+        string path = "salary.txt";
+        File.WriteAllText("salary.txt","Monthly salary : 50000");
+        Console.WriteLine("File created");
+    }
+
+    static void FinallyDemo()
+    {
+        try
+        {
+            Console.WriteLine("Processing...");
+        }
+        catch
+        {
+            Console.WriteLine("Error");
+        }
+        finally
+        {
+            Console.WriteLine("Program Finished");
+        }
+    }
+    static void DivideNumbersV2()
+    {
+        try
+        {
+            Console.Write("Enter number1: ");
+            int num1 = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Enter number2: ");
+            int num2 = Convert.ToInt32(Console.ReadLine());
+
+            int result = num1 / num2;
+            Console.WriteLine($"Result : {result}");
+        }
+        catch (DivideByZeroException)
+        {
+            Console.WriteLine("Cannot divide by zero.");
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("Please input valid numbers.");
+        }
+    }
+
+    static void DivideNumbers()
+    {
+        try {
+            Console.Write("Enter number1: ");
+            int num1 = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Enter number2: ");
+            int num2 = Convert.ToInt32(Console.ReadLine());
+
+            int result = num1 / num2;
+
+            Console.WriteLine($"Resule: {result}");
+        }
+        catch
+        {
+            Console.WriteLine("Something went wrong.");
+        }
     }
 
     //Day 8 - Abstract Class & Interfaces
