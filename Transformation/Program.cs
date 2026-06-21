@@ -71,7 +71,140 @@ class Program
         //FinallyDemo();
         //WriteFile();
         //ReadFile();
-        StudentFileManager();
+        //StudentFileManager();
+
+        //Day 10 – Generics & Collections.
+        //GenericMethodDemo();
+        //GenericClassDemo();
+        //DictionaryDemo();
+        //QueueDemo();
+        //StackDemo();
+        EmployeeDirectory();
+    }
+
+    //Day 10 – Generics & Collections.
+
+    static void EmployeeDirectory()
+    {
+        Dictionary<int, string> employeeDictionary = new();
+        bool isRunning = true;
+        try
+        {
+            while (isRunning)
+            {
+                Console.WriteLine("\n**********Employee Directory*************\n");
+                Console.WriteLine("1.Add Employee\n2.Search Employee\n3.View Employee\n4.Exit\nPlease enter the Option number:");
+                int option = Convert.ToInt32(Console.ReadLine());
+
+                switch (option)
+                {
+                    case 1:
+                        Console.WriteLine("Please Enter Employee ID:");
+                        int employeeID = Convert.ToInt32(Console.ReadLine());
+
+                        if (!employeeDictionary.ContainsKey(employeeID))
+
+                        {
+                            Console.WriteLine("Please Enter Employee Name:");
+                            string employeeName = Console.ReadLine();
+
+                            employeeDictionary.Add(employeeID, employeeName);
+                        }
+                        else
+                            Console.WriteLine("Entered EmployeeID already Exists.");
+                        break;
+                    case 2:
+                        Console.WriteLine("Enter EmployeeID:");
+                        int employeeID2 = Convert.ToInt32(Console.ReadLine());
+                        if (employeeDictionary.ContainsKey(employeeID2))
+                        {
+                            Console.WriteLine($"Employee ID {employeeID2} exists.\nEmployeeN Name :{employeeDictionary[employeeID2]}");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Employee ID {employeeID2} does not exists.");
+                        }
+                        break;
+                    case 3:
+                        Console.WriteLine("Employee Details:");
+                        if(employeeDictionary.Count > 0)
+                        foreach(var employee in employeeDictionary)
+                        {
+                            Console.WriteLine($"{employee.Key} - {employee.Value}");
+                        }
+                        else
+                            Console.WriteLine("No Employee Records Found.");
+                        break;
+                    case 4:
+                        isRunning = false;
+                        break;
+                    default:
+                        Console.WriteLine("Please Enter valid option.");
+                        break;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+
+    static void StackDemo()
+    {
+        Stack<string> stack =
+            new Stack<string>();
+
+        stack.Push("Tony");
+        stack.Push("Steve");
+        stack.Push("Bruce");
+
+        Console.WriteLine(stack.Pop());
+
+        Console.WriteLine(stack.Peek());
+    }
+
+    static void QueueDemo()
+    {
+        Queue<string> queue = new Queue<string>();
+
+        queue.Enqueue("Tony");
+        queue.Enqueue("Steve");
+        queue.Enqueue("Bruce");
+
+        Console.WriteLine(queue.Dequeue());
+        Console.WriteLine(queue.Peek());
+    }
+
+    static void DictionaryDemo()
+    {
+        Dictionary<int, string> students = new Dictionary<int, string>();
+
+        students.Add(101, "Tony");
+        students.Add(102, "Steve");
+        students.Add(103, "Bruce");
+
+        foreach (var student in students)
+        {
+            Console.WriteLine($"{student.Key} : {student.Value}");
+        }
+    }
+    static void GenericClassDemo()
+    {
+        Box<int> box1 = new Box<int>();
+        box1.Value = 100;
+        Console.WriteLine(box1.Value);
+
+        Box<string> box2 = new Box<string>();
+        box2.Value = "Tony";
+        Console.WriteLine(box2.Value);
+    }
+
+    static void GenericMethodDemo()
+    {
+        Utility.Display<int>(100);
+        Utility.Display<string>("Hello");
+        Utility.Display<double>(99.99);
     }
 
     //Day 9 - Exception Handling & File Operations
@@ -81,7 +214,7 @@ class Program
         try
         {
             bool isRunning = true;
-            string filePath = "StudentFileManager.txt"; 
+            string filePath = "StudentFileManager.txt";
             while (isRunning)
             {
                 Console.WriteLine("Student File Manager\n1.Add Student\n2.View Student\n3.Exit\nPlease Enter the option number");
@@ -97,7 +230,7 @@ class Program
                             if (!File.Exists(filePath))
                                 File.WriteAllText(filePath, studentName);
                             else
-                                File.AppendAllText(filePath, "\n"+studentName);
+                                File.AppendAllText(filePath, "\n" + studentName);
 
                             Console.WriteLine($"{studentName} added successfully");
                         }
@@ -107,13 +240,13 @@ class Program
                         }
                         break;
                     case 2:
-                        
-                        if (File.Exists(filePath)) 
+
+                        if (File.Exists(filePath))
                         {
                             Console.WriteLine("Name of Students:");
-                            string content = File.ReadAllText(filePath); 
+                            string content = File.ReadAllText(filePath);
                             Console.WriteLine(content);
-                        }                           
+                        }
                         else
                             Console.WriteLine("No student records found.");
                         break;
@@ -143,7 +276,7 @@ class Program
     static void WriteFile()
     {
         string path = "salary.txt";
-        File.WriteAllText("salary.txt","Monthly salary : 50000");
+        File.WriteAllText("salary.txt", "Monthly salary : 50000");
         Console.WriteLine("File created");
     }
 
@@ -187,7 +320,8 @@ class Program
 
     static void DivideNumbers()
     {
-        try {
+        try
+        {
             Console.Write("Enter number1: ");
             int num1 = Convert.ToInt32(Console.ReadLine());
 
@@ -269,7 +403,7 @@ class Program
         CalculatorV2 cal = new CalculatorV2();
 
         int sum1 = cal.Sum(10, 20);
-        int sum2 = cal.Sum(10,20,30);
+        int sum2 = cal.Sum(10, 20, 30);
         Console.WriteLine($"Sum1 : {sum1}\nSum2 : {sum2}");
     }
 
@@ -328,7 +462,7 @@ class Program
 
     static void SquareDemo()
     {
-       int result = MathHelper.Square(5);
+        int result = MathHelper.Square(5);
         Console.WriteLine($"Result : {result}");
     }
 
@@ -363,41 +497,43 @@ class Program
         List<ShoppingCartProduct> objList = new List<ShoppingCartProduct>();
         bool isRunning = true;
 
-        while (isRunning) { 
-        Console.WriteLine("Please Enter the Request:\n1.Add Product\n2.TotalPrice\n3.Exit");
-        int number = Convert.ToInt32(Console.ReadLine());
-
-        switch (number)
+        while (isRunning)
         {
-            case 1:
-                ShoppingCartProduct obj = new ShoppingCartProduct();
-                Console.WriteLine("Enter the Product Name:");
-                obj.Name = Console.ReadLine();
+            Console.WriteLine("Please Enter the Request:\n1.Add Product\n2.TotalPrice\n3.Exit");
+            int number = Convert.ToInt32(Console.ReadLine());
 
-                Console.WriteLine("Enter Product Price:");
-                obj.Price = Convert.ToDouble(Console.ReadLine());
+            switch (number)
+            {
+                case 1:
+                    ShoppingCartProduct obj = new ShoppingCartProduct();
+                    Console.WriteLine("Enter the Product Name:");
+                    obj.Name = Console.ReadLine();
 
-                Console.WriteLine("Enter number of Quantity:");
-                obj.Quantity = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Enter Product Price:");
+                    obj.Price = Convert.ToDouble(Console.ReadLine());
 
-                objList.Add(obj);
-                Console.WriteLine("Item added successfully");
-                break;
+                    Console.WriteLine("Enter number of Quantity:");
+                    obj.Quantity = Convert.ToInt32(Console.ReadLine());
 
-            case 2:
+                    objList.Add(obj);
+                    Console.WriteLine("Item added successfully");
+                    break;
+
+                case 2:
                     ShoppingCartProduct.TotalPrice(objList);
-                break;
+                    break;
 
-            case 3:
-                isRunning = false;
-                break;
-            default:
-                Console.WriteLine("Invalid Entry");
-                break;
-        }
+                case 3:
+                    isRunning = false;
+                    break;
+                default:
+                    Console.WriteLine("Invalid Entry");
+                    break;
+            }
         }
     }
-    static void Calculations() {
+    static void Calculations()
+    {
         Calculator objCalc = new Calculator();
         bool isRunning = true;
 
@@ -407,7 +543,8 @@ class Program
             int number = Convert.ToInt32(Console.ReadLine());
 
 
-            switch (number) {
+            switch (number)
+            {
                 case 1:
                     Console.WriteLine("Enter Number 1:");
                     objCalc.Number1 = Convert.ToInt32(Console.ReadLine());
@@ -465,7 +602,8 @@ class Program
             car.DisplayCarInfo();
     }
 
-    static void BankOperations() {
+    static void BankOperations()
+    {
 
         bool isRunning = true;
 
@@ -513,7 +651,7 @@ class Program
                     Console.WriteLine("Invalid Option");
                     break;
             }
-            
+
 
         }
     }
@@ -521,7 +659,7 @@ class Program
 
     static void StudentDetails()
     {
-        Student obj = new Student("Ronaldo",7);
+        Student obj = new Student("Ronaldo", 7);
 
         Console.WriteLine($"Student Name :{obj.Name}\nStudent Age:{obj.Age}");
     }
@@ -542,14 +680,15 @@ class Program
         int[] array = new int[5];
         Console.WriteLine("Enter 5 numbers");
 
-        for(int i = 0; i < array.Length; i++)
+        for (int i = 0; i < array.Length; i++)
         {
             array[i] = Convert.ToInt32(Console.ReadLine());
         }
 
-        int sum = 0, avg = 0,highestNumber = array[0], lowestNumber = array[0];
+        int sum = 0, avg = 0, highestNumber = array[0], lowestNumber = array[0];
 
-        foreach(int i in array){
+        foreach (int i in array)
+        {
             sum = sum + i;
 
             if (highestNumber < i)
@@ -592,8 +731,8 @@ class Program
                     string name = Console.ReadLine();
                     bool isfound = false;
 
-                    foreach(string item in studentList)
-                        if(item == name)
+                    foreach (string item in studentList)
+                        if (item == name)
                         {
                             Console.WriteLine("Student found");
                             isfound = true;
@@ -602,7 +741,7 @@ class Program
                     if (!isfound)
                         Console.WriteLine("Student not found");
                     break;
-                
+
 
                 case 4:
                     Console.WriteLine("Enter Student Name to remove :");
@@ -629,18 +768,20 @@ class Program
                     break;
 
             }
-                   
+
         }
     }
 
-    static void EvenNumbers() {
+    static void EvenNumbers()
+    {
         int[] array = { 1, 2, 3, 6, 5, 11, 24, 38, 77 };
-        
+
         foreach (int i in array)
-            if(i%2 == 0){
+            if (i % 2 == 0)
+            {
                 Console.Write($"{i} ");
             }
-    
+
 
     }
 
@@ -662,7 +803,7 @@ class Program
         int[] array = { 10, 20, 30, 40, 50 };
         int sum = 0;
 
-            foreach (int i in array)
+        foreach (int i in array)
             sum = sum + i;
 
         Console.WriteLine($"Sum : {sum}");
@@ -673,7 +814,7 @@ class Program
         string[] students = { "John", "Wick", "Tony", "Stark", "Bruce" };
 
         Console.WriteLine("Using FOR Loop :");
-        for(int i = 0; i <= students.Length - 1; i++)
+        for (int i = 0; i <= students.Length - 1; i++)
         {
             Console.WriteLine(students[i]);
         }
@@ -696,7 +837,7 @@ class Program
                 Console.WriteLine("Grade : B");
             else if (mark >= 50)
                 Console.WriteLine("Grade : C");
-            else 
+            else
                 Console.WriteLine("Fail");
         }
         else
