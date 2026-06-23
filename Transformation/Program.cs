@@ -79,7 +79,123 @@ class Program
         //DictionaryDemo();
         //QueueDemo();
         //StackDemo();
-        EmployeeDirectory();
+        //EmployeeDirectory();
+
+        //Day 11 - LINQ Fundamentals
+        //FilterEvenNumbers();
+        //FilterNameStartingWithA();
+        //SortNumbers();
+        //SortNumbersInDescending();
+        //FirstNumberGreater();
+        StudentsMarkList();
+    }
+
+    //Day 11 - LINQ Fundamentals
+
+    static void StudentsMarkList()
+    {
+        try
+        {
+            List<StudentModel> students = new()
+        {
+            new StudentModel{Id = 1,Name = "Tony",Mark = 66 },
+            new StudentModel{Id = 2,Name = "Steve",Mark = 88 },
+            new StudentModel{Id = 3,Name = "Bruce",Mark = 45 },
+            new StudentModel{Id = 4,Name = "Natasha",Mark = 99 }
+        };
+
+            List<StudentModel> studentsList1 = students.Where(student => student.Mark > 70).ToList();
+            List<StudentModel> studentsList2 = students.OrderByDescending(student => student.Mark).ToList();
+            StudentModel studentObject = students.FirstOrDefault(student => student.Mark > 90);
+
+            Console.WriteLine("-------------Student with Marks > 70-------------");
+
+            if (studentsList1.Count > 0)
+            {
+                foreach (StudentModel student in studentsList1)
+                {
+                    Console.WriteLine($"ID:{student.Id}   Name: {student.Name}   Mark: {student.Mark}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("No students with Marks > 70");
+            }
+            Console.WriteLine("\n-------------Students Rank-------------");
+            foreach (StudentModel student in studentsList2)
+            {
+                Console.WriteLine($"ID:{student.Id}   Name: {student.Name}   Mark: {student.Mark}");
+            }
+
+            Console.WriteLine("\n-------------Student with Marks > 90 -------------");
+            if (studentObject is not null)
+            {
+                Console.WriteLine($"ID:{studentObject.Id}   Name: {studentObject.Name}   Mark: {studentObject.Mark}");
+            }
+            else
+            {
+                Console.WriteLine("No students with Mark > 90");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+    static void FirstNumberGreater()
+    {
+        List<int> numbers = new() { 10, 20, 60, 80, 90 };
+
+        int result = numbers.FirstOrDefault(n => n > 50);
+
+        Console.WriteLine(result);
+    }
+
+    static void SortNumbersInDescending()
+    {
+        List<int> numbers = new() { 40, 10, 80, 20, 60 };
+
+        var results = numbers.OrderByDescending(n => n);
+
+        foreach (int number in results)
+        {
+            Console.WriteLine(number);
+        }
+    }
+
+    static void SortNumbers()
+    {
+        List<int> numbers = new() { 40, 10, 80, 20, 60 };
+
+        var sortedNumbers = numbers.OrderBy(n => n);
+
+        foreach (int number in sortedNumbers)
+        {
+            Console.WriteLine(number);
+        }
+    }
+
+    static void FilterNameStartingWithA()
+    {
+        List<string> names = new() { "Tony", "Alice", "andrew", "Bruce", "Steve" };
+
+        var results = names.Where(name => name.StartsWith("A", StringComparison.OrdinalIgnoreCase));
+
+        foreach (var name in results)
+        {
+            Console.WriteLine(name);
+        }
+    }
+    static void FilterEvenNumbers()
+    {
+        List<int> numbers = new() { 10, 15, 20, 25, 30, 35 };
+
+        List<int> results = numbers.Where(n => n % 2 == 0).ToList();
+
+        foreach (int number in results)
+        {
+            Console.WriteLine(number);
+        }
     }
 
     //Day 10 – Generics & Collections.
@@ -118,7 +234,7 @@ class Program
                         int employeeID2 = Convert.ToInt32(Console.ReadLine());
                         if (employeeDictionary.ContainsKey(employeeID2))
                         {
-                            Console.WriteLine($"Employee ID {employeeID2} exists.\nEmployeeN Name :{employeeDictionary[employeeID2]}");
+                            Console.WriteLine($"Employee ID {employeeID2} exists.\nEmployee Name :{employeeDictionary[employeeID2]}");
                         }
                         else
                         {
@@ -127,11 +243,11 @@ class Program
                         break;
                     case 3:
                         Console.WriteLine("Employee Details:");
-                        if(employeeDictionary.Count > 0)
-                        foreach(var employee in employeeDictionary)
-                        {
-                            Console.WriteLine($"{employee.Key} - {employee.Value}");
-                        }
+                        if (employeeDictionary.Count > 0)
+                            foreach (var employee in employeeDictionary)
+                            {
+                                Console.WriteLine($"{employee.Key} - {employee.Value}");
+                            }
                         else
                             Console.WriteLine("No Employee Records Found.");
                         break;
